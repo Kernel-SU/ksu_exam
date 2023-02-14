@@ -5,6 +5,7 @@
  * This will overwrite any built-in system commands if they exist.
  */
 var customCommands = {};
+var devicestatus = 'system';
 
 /**
  * Base64 encodes a string.
@@ -126,6 +127,16 @@ function getQueryVariable(variable) {
 }
 
 /**
+ * Get Device Status
+ **/
+customCommands.status ={
+    about: "Get device statu",
+    exe: function () {
+        return "Device status:&nbsp;&nbsp;" + devicestatus;
+    }
+}
+
+/**
  * Fastboot
  **/
 customCommands.fastboot = {
@@ -138,38 +149,42 @@ customCommands.fastboot = {
                 if (args[3]) {
                     var result = term.catFile(args[3]);
                 }
-                if (args[3] && args[3] == "boot-official.img" && result != false) {
-                    information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
-                    information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
-                    information += "<br>Finished. Total time: 5.312s<br>Nothing happened.";
-                } else if (args[3] && args[3] == "ksu-10581-Image-android12-5.10.81_2022-03-boot-gz.img" && result != false) {
-                    information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
-                    information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
-                    information += "<br>Finished. Total time: 5.312s";
-                    information += "<br>Congratulations!!You have successfully completed this exam.";
-                    information += "<br>The Group Password:&nbsp;&nbsp;" + atob(getQueryVariable("pwd"));
-                } else if (args[3] && args[3] == "ksu-10581-Image-android12-5.10.81_2022-03-boot-lz4.img" && result != false) {
-                    information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
-                    information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
-                    information += "<br>Finished. Total time: 5.312s";
-                    information += "<br>Congratulations!!Your device has become a brick!";
-                    information += "<br>Please continue to finish exam.";
-                } else if (args[3] && args[3] == "ksu-10581-Image-android12-5.10.81_2022-03-boot.img" && result != false) {
-                    information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
-                    information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
-                    information += "<br>Finished. Total time: 5.312s";
-                    information += "<br>Congratulations!!Your device has become a brick!";
-                    information += "<br>Please continue to finish exam.";
-                } else if (args[3] && args[3] == "ksu-10581-Image-android13-5.10.107_2022-05-boot.img" && result != false) {
-                    information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
-                    information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
-                    information += "<br>Finished. Total time: 5.312s";
-                    information += "<br>Congratulations!!Your device has become a brick!";
-                    information += "<br>Please continue to finish exam.";
-                } else if (!args[3]) {
-                    information += "fastboot: flash: Please choose a file which you need to flash.";
+                if (devicestatus === 'bootloader' || devicestatus === 'fastbootd') {
+                    if (args[3] && args[3] == "boot-official.img" && result != false) {
+                        information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
+                        information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
+                        information += "<br>Finished. Total time: 5.312s<br>Nothing happened.";
+                    } else if (args[3] && args[3] == "ksu-10581-Image-android12-5.10.81_2022-03-boot-gz.img" && result != false) {
+                        information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
+                        information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
+                        information += "<br>Finished. Total time: 5.312s";
+                        information += "<br>Congratulations!!You have successfully completed this exam.";
+                        information += "<br>The Group Password:&nbsp;&nbsp;" + atob(getQueryVariable("pwd"));
+                    } else if (args[3] && args[3] == "ksu-10581-Image-android12-5.10.81_2022-03-boot-lz4.img" && result != false) {
+                        information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
+                        information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
+                        information += "<br>Finished. Total time: 5.312s";
+                        information += "<br>Congratulations!!Your device has become a brick!";
+                        information += "<br>Please continue to finish exam.";
+                    } else if (args[3] && args[3] == "ksu-10581-Image-android12-5.10.81_2022-03-boot.img" && result != false) {
+                        information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
+                        information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
+                        information += "<br>Finished. Total time: 5.312s";
+                        information += "<br>Congratulations!!Your device has become a brick!";
+                        information += "<br>Please continue to finish exam.";
+                    } else if (args[3] && args[3] == "ksu-10581-Image-android13-5.10.107_2022-05-boot.img" && result != false) {
+                        information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
+                        information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
+                        information += "<br>Finished. Total time: 5.312s";
+                        information += "<br>Congratulations!!Your device has become a brick!";
+                        information += "<br>Please continue to finish exam.";
+                    } else if (!args[3]) {
+                        information += "fastboot: flash: Please choose a file which you need to flash.";
+                    } else {
+                        information += "fastboot: error: No such file or directory.";
+                    }
                 } else {
-                    information += "fastboot: error: No such file or directory.";
+                    information += "fastboot: No connected devices found.";
                 }
             } else if (!args[2]) {
                 information += "fastboot: flash: Please choose the partition which you need to flash.<br>(Just need to flash boot.)";
@@ -177,11 +192,177 @@ customCommands.fastboot = {
                 information += "fastboot: flash: Needn't flash this partition.";
             }
         } else if (args[1] && args[1] == "devices") {
-            information += "a9d45561&nbsp;&nbsp;&nbsp;&nbsp;fastboot<br>&nbsp;";
+            if (devicestatus === 'bootloader') {
+                information += "a9d45561&nbsp;&nbsp;&nbsp;&nbsp;fastboot<br>&nbsp;";
+            } else if (devicestatus === 'fastbootd') {
+                information += "a9d45561&nbsp;&nbsp;&nbsp;&nbsp;fastbootd<br>&nbsp;";
+            } else {
+                information += "&nbsp;";
+            }
         } else if (args[1] && args[1] == "-h") {
-            information += "usage: fastboot [OPTION...] COMMAND...<br><br>&nbsp;flash PARTITION [FILENAME]<br>&nbsp;devices<br>&nbsp;-h";
+            information += "usage: fastboot [OPTION...] COMMAND...<br><br>&nbsp;flash PARTITION [FILENAME]<br>&nbsp;devices<br>&nbsp;-h<br>&nbsp;reboot [bootloader/fastboot/recovery]";
+        } else if (args[1] && args[1] == "reboot") {
+            if (!args[2]) {
+                if (devicestatus === 'system') {
+                    information += "fastboot: No connected devices found.";
+                } else if (devicestatus === 'recovery') {
+                    information += "fastboot: No connected devices found.";
+                } else if (devicestatus === 'bootloader') {
+                    information += "Rebooting";
+                    information += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.001s]";
+                    information += "<br>Finished. Total time: 0.051s";
+                    devicestatus = 'system';
+                } else if (devicestatus === 'fastbootd') {
+                    information += "Rebooting";
+                    information += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.001s]";
+                    information += "<br>Finished. Total time: 0.051s";
+                    devicestatus = 'system'; 
+                }
+            } else if (args[2] && args[2] == "bootloader") {
+                if (devicestatus === 'system') {
+                    information += "fastboot: No connected devices found.";
+                } else if (devicestatus === 'recovery') {
+                    information += "fastboot: No connected devices found.";
+                } else if (devicestatus === 'bootloader') {
+                    information += "Rebooting";
+                    information += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.001s]";
+                    information += "<br>Finished. Total time: 0.051s";
+                    devicestatus = 'bootloader';
+                } else if (devicestatus === 'fastbootd') {
+                    information += "Rebooting";
+                    information += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.001s]";
+                    information += "<br>Finished. Total time: 0.051s";
+                    devicestatus = 'bootloader'; 
+                }  
+            } else if (args[2] && args[2] == "fastboot") {
+                if (devicestatus === 'system') {
+                    information += "fastboot: No connected devices found.";
+                } else if (devicestatus === 'recovery') {
+                    information += "fastboot: No connected devices found.";
+                } else if (devicestatus === 'bootloader') {
+                    information += "Rebooting";
+                    information += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.001s]";
+                    information += "<br>Finished. Total time: 0.051s";
+                    devicestatus = 'fastbootd';
+                } else if (devicestatus === 'fastbootd') {
+                    information += "Rebooting";
+                    information += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.001s]";
+                    information += "<br>Finished. Total time: 0.051s";
+                    devicestatus = 'fastbootd'; 
+                }
+            } else if (args[2] && args[2] == "recovery") {
+                if (devicestatus === 'system') {
+                    information += "fastboot: No connected devices found.";
+                } else if (devicestatus === 'recovery') {
+                    information += "fastboot: No connected devices found.";
+                } else if (devicestatus === 'bootloader') {
+                    information += "Rebooting";
+                    information += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.001s]";
+                    information += "<br>Finished. Total time: 0.051s";
+                    devicestatus = 'recovery';
+                } else if (devicestatus === 'fastbootd') {
+                    information += "Rebooting";
+                    information += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.001s]";
+                    information += "<br>Finished. Total time: 0.051s";
+                    devicestatus = 'recovery';
+                }
+            } else {
+                information += "fastboot: usage: no command";
+            }
         } else {
             information += "fastboot: usage: no command";
+        }
+        return information;
+    }
+}
+
+/**
+ * adb
+ **/
+customCommands.adb = {
+    about: "usage: adb [OPTION...] COMMAND...",
+    exe: function (args) {
+        var information = "";
+        if (args[1] && args[1] == "devices") {
+            if (devicestatus === 'system') {
+                information += "a9d45561&nbsp;&nbsp;&nbsp;&nbsp;device<br>&nbsp;";
+            } else if (devicestatus === 'recovery') {
+                information += "a9d45561&nbsp;&nbsp;&nbsp;&nbsp;recovery<br>&nbsp;";
+            } else {
+                information += "&nbsp;";
+            }
+        } else if (args[1] && args[1] == "--help") {
+            information += "usage: adb [OPTION...] COMMAND...<br><br>&nbsp;reboot [bootloader/fastboot/recovery]<br>&nbsp;devices<br>&nbsp;--help";
+        } else if (args[1] && args[1] == "reboot") {
+            if (!args[2]) {
+                if (devicestatus === 'bootloader') {
+                    information += "adb: No connected devices found.";
+                } else if (devicestatus === 'fastbootd') {
+                    information += "adb: No connected devices found.";
+                } else if (devicestatus === 'system') {
+                    information += "Rebooting";
+                    information += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.001s]";
+                    information += "<br>Finished. Total time: 0.051s";
+                    devicestatus = 'system';
+                } else if (devicestatus === 'recovery') {
+                    information += "Rebooting";
+                    information += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.001s]";
+                    information += "<br>Finished. Total time: 0.051s";
+                    devicestatus = 'system'; 
+                }
+            } else if (args[2] && args[2] == "bootloader") {
+                if (devicestatus === 'bootloader') {
+                    information += "adb: No connected devices found.";
+                } else if (devicestatus === 'fastbootd') {
+                    information += "adb: No connected devices found.";
+                } else if (devicestatus === 'system') {
+                    information += "Rebooting";
+                    information += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.001s]";
+                    information += "<br>Finished. Total time: 0.051s";
+                    devicestatus = 'bootloader';
+                } else if (devicestatus === 'recovery') {
+                    information += "Rebooting";
+                    information += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.001s]";
+                    information += "<br>Finished. Total time: 0.051s";
+                    devicestatus = 'bootloader'; 
+                }  
+            } else if (args[2] && args[2] == "fastboot") {
+                if (devicestatus === 'bootloader') {
+                    information += "adb: No connected devices found.";
+                } else if (devicestatus === 'fastbootd') {
+                    information += "adb: No connected devices found.";
+                } else if (devicestatus === 'system') {
+                    information += "Rebooting";
+                    information += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.001s]";
+                    information += "<br>Finished. Total time: 0.051s";
+                    devicestatus = 'fastbootd';
+                } else if (devicestatus === 'recovery') {
+                    information += "Rebooting";
+                    information += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.001s]";
+                    information += "<br>Finished. Total time: 0.051s";
+                    devicestatus = 'fastbootd'; 
+                }
+            } else if (args[2] && args[2] == "recovery") {
+                if (devicestatus === 'bootloader') {
+                    information += "adb: No connected devices found.";
+                } else if (devicestatus === 'fastbootd') {
+                    information += "adb: No connected devices found.";
+                } else if (devicestatus === 'system') {
+                    information += "Rebooting";
+                    information += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.001s]";
+                    information += "<br>Finished. Total time: 0.051s";
+                    devicestatus = 'recovery';
+                } else if (devicestatus === 'recovery') {
+                    information += "Rebooting";
+                    information += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.001s]";
+                    information += "<br>Finished. Total time: 0.051s";
+                    devicestatus = 'recovery';
+                }
+            } else {
+                information += "adb: usage: no command";
+            }
+        } else {
+            information += "adb: usage: no command";
         }
         return information;
     }
