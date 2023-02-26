@@ -140,7 +140,7 @@ customCommands.status ={
  * Fastboot
  **/
 customCommands.fastboot = {
-    about: "usage: fastboot [OPTION...] COMMAND...",
+    about: "fastboot -h",
     exe: function (args) {
         var information = "";
         var result = "";
@@ -314,7 +314,7 @@ customCommands.fastboot = {
  * adb
  **/
 customCommands.adb = {
-    about: "usage: adb [OPTION...] COMMAND...",
+    about: "adb --help",
     exe: function (args) {
         var information = "";
         if (args[1] && args[1] == "devices") {
