@@ -154,25 +154,59 @@ customCommands.fastboot = {
                         information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
                         information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
                         information += "<br>Finished. Total time: 5.312s<br>Nothing happened.";
-                    } else if (args[3] && args[3] == "ksu-10581-Image-android12-5.10.81_2022-03-boot-gz.img" && result != false) {
+                    } else if (args[3] && args[3] == "kernel-WSA-arm64-5.10.117.2-20220906.zip" && result != false) {
+                        information += "fastboot: Can not flash this file."
+                    } else if (args[3] && args[3] == "kernel-WSA-x86_64-5.10.117.2-20220906.zip" && result != false) {
+                        information += "fastboot: Can not flash this file."
+                    } else if (args[3] && args[3] == "ksu-10647-Image-android12-5.10.136_2022-11-boot-gz.img" && result != false) {
+                        information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
+                        information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
+                        information += "<br>Finished. Total time: 5.312s";
+                        information += "<br>Congratulations!!Your device has become a brick!";
+                        information += "<br>Please continue to finish exam.";
+                    } else if (args[3] && args[3] == "ksu-10647-Image-android12-5.10.136_2022-11-boot-lz4.img" && result != false) {
+                        information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
+                        information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
+                        information += "<br>Finished. Total time: 5.312s";
+                        information += "<br>Congratulations!!Your device has become a brick!";
+                        information += "<br>Please continue to finish exam.";
+                    } else if (args[3] && args[3] == "ksu-10647-Image-android12-5.10.136_2022-11-boot.img" && result != false) {
                         information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
                         information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
                         information += "<br>Finished. Total time: 5.312s";
                         information += "<br>Congratulations!!You have successfully completed this exam.";
                         information += "<br>The Group Password:&nbsp;&nbsp;" + atob(getQueryVariable("pwd"));
-                    } else if (args[3] && args[3] == "ksu-10581-Image-android12-5.10.81_2022-03-boot-lz4.img" && result != false) {
+                    } else if (args[3] && args[3] == "ksu-10647-Image-android13-5.10.107_2022-05-boot-gz.img" && result != false) {
                         information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
                         information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
                         information += "<br>Finished. Total time: 5.312s";
                         information += "<br>Congratulations!!Your device has become a brick!";
                         information += "<br>Please continue to finish exam.";
-                    } else if (args[3] && args[3] == "ksu-10581-Image-android12-5.10.81_2022-03-boot.img" && result != false) {
+                    } else if (args[3] && args[3] == "ksu-10647-Image-android13-5.10.107_2022-05-boot-lz4.img" && result != false) {
                         information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
                         information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
                         information += "<br>Finished. Total time: 5.312s";
                         information += "<br>Congratulations!!Your device has become a brick!";
                         information += "<br>Please continue to finish exam.";
-                    } else if (args[3] && args[3] == "ksu-10581-Image-android13-5.10.107_2022-05-boot.img" && result != false) {
+                    } else if (args[3] && args[3] == "ksu-10647-Image-android13-5.10.107_2022-05-boot.img" && result != false) {
+                        information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
+                        information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
+                        information += "<br>Finished. Total time: 5.312s";
+                        information += "<br>Congratulations!!Your device has become a brick!";
+                        information += "<br>Please continue to finish exam.";
+                    } else if (args[3] && args[3] == "ksu-10647-Image-android13-5.10.149_2022-05-boot-gz.img" && result != false) {
+                        information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
+                        information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
+                        information += "<br>Finished. Total time: 5.312s";
+                        information += "<br>Congratulations!!Your device has become a brick!";
+                        information += "<br>Please continue to finish exam.";
+                    } else if (args[3] && args[3] == "ksu-10647-Image-android13-5.10.149_2022-05-boot-lz4.img" && result != false) {
+                        information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
+                        information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
+                        information += "<br>Finished. Total time: 5.312s";
+                        information += "<br>Congratulations!!Your device has become a brick!";
+                        information += "<br>Please continue to finish exam.";
+                    } else if (args[3] && args[3] == "ksu-10647-Image-android13-5.10.149_2022-05-boot.img" && result != false) {
                         information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
                         information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
                         information += "<br>Finished. Total time: 5.312s";
@@ -383,53 +417,75 @@ customCommands.magiskboot = {
             if (args[2] && args[2] == "boot-official.img" && result != false) {
                 information += "Parsing boot image: [boot-official.img]";
                 information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
-                information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[15871933]";
-                information += "<br>RAMDISK_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1380084]";
-                information += "<br>OS_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[12.0.0]";
-                information += "<br>OS_PATCH_LEVEL&nbsp;&nbsp;[2022-03]";
-                information += "<br>PAGESIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4096]";
-                information += "<br>CMDLINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]";
-                information += "<br>KERNEL_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[gzip]";
-                information += "<br>RAMDISK_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_legacy]";
-                information += "<br>VBMETA";
-            } else if (args[2] && args[2] == "ksu-10581-Image-android12-5.10.81_2022-03-boot-gz.img" && result != false) {
-                information += "Parsing boot image: [ksu-10581-Image-android12-5.10.81_2022-03-boot-gz.img]";
-                information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
-                information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[15871933]";
-                information += "<br>RAMDISK_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1380084]";
-                information += "<br>OS_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[12.0.0]";
-                information += "<br>OS_PATCH_LEVEL&nbsp;&nbsp;[2022-03]";
-                information += "<br>PAGESIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4096]";
-                information += "<br>CMDLINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]";
-                information += "<br>KERNEL_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[gzip]";
-                information += "<br>RAMDISK_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_legacy]";
-                information += "<br>VBMETA";
-            } else if (args[2] && args[2] == "ksu-10581-Image-android12-5.10.81_2022-03-boot-lz4.img" && result != false) {
-                information += "Parsing boot image: [ksu-10581-Image-android12-5.10.81_2022-03-boot-lz4.img]";
-                information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
-                information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[18141752]";
-                information += "<br>RAMDISK_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1380084]";
-                information += "<br>OS_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[12.0.0]";
-                information += "<br>OS_PATCH_LEVEL&nbsp;&nbsp;[2022-03]";
-                information += "<br>PAGESIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4096]";
-                information += "<br>CMDLINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]";
-                information += "<br>KERNEL_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_lg]";
-                information += "<br>RAMDISK_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_legacy]";
-                information += "<br>VBMETA";
-            } else if (args[2] && args[2] == "ksu-10581-Image-android12-5.10.81_2022-03-boot.img" && result != false) {
-                information += "Parsing boot image: [ksu-10581-Image-android12-5.10.81_2022-03-boot.img]";
-                information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
                 information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[37331556]";
                 information += "<br>RAMDISK_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1380084]";
                 information += "<br>OS_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[12.0.0]";
-                information += "<br>OS_PATCH_LEVEL&nbsp;&nbsp;[2022-03]";
+                information += "<br>OS_PATCH_LEVEL&nbsp;&nbsp;[2022-11]";
                 information += "<br>PAGESIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4096]";
                 information += "<br>CMDLINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]";
                 information += "<br>KERNEL_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[raw]";
                 information += "<br>RAMDISK_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_legacy]";
                 information += "<br>VBMETA";
-            } else if (args[2] && args[2] == "ksu-10581-Image-android13-5.10.107_2022-05-boot.img" && result != false) {
-                information += "Parsing boot image: [ksu-10581-Image-android13-5.10.107_2022-05-boot.img]";
+            } else if (args[2] && args[2] == "kernel-WSA-arm64-5.10.117.2-20220906.zip" && result != false) {
+                information += "magiskboot: Could not unpack this file.";
+            } else if (args[2] && args[2] == "kernel-WSA-x86_64-5.10.117.2-20220906.zip" && result != false) {
+                information += "magiskboot: Could not unpack this file.";
+            } else if (args[2] && args[2] == "ksu-10647-Image-android12-5.10.136_2022-11-boot-gz.img" && result != false) {
+                information += "Parsing boot image: [ksu-10647-Image-android12-5.10.136_2022-11-boot-gz.img]";
+                information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
+                information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[15871933]";
+                information += "<br>RAMDISK_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1380084]";
+                information += "<br>OS_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[12.0.0]";
+                information += "<br>OS_PATCH_LEVEL&nbsp;&nbsp;[2022-11]";
+                information += "<br>PAGESIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4096]";
+                information += "<br>CMDLINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]";
+                information += "<br>KERNEL_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[gzip]";
+                information += "<br>RAMDISK_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_legacy]";
+                information += "<br>VBMETA";
+            } else if (args[2] && args[2] == "ksu-10647-Image-android12-5.10.136_2022-11-boot-lz4.img" && result != false) {
+                information += "Parsing boot image: [ksu-10647-Image-android12-5.10.136_2022-11-boot-lz4.img]";
+                information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
+                information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[18141752]";
+                information += "<br>RAMDISK_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1380084]";
+                information += "<br>OS_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[12.0.0]";
+                information += "<br>OS_PATCH_LEVEL&nbsp;&nbsp;[2022-11]";
+                information += "<br>PAGESIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4096]";
+                information += "<br>CMDLINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]";
+                information += "<br>KERNEL_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_lg]";
+                information += "<br>RAMDISK_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_legacy]";
+                information += "<br>VBMETA";
+            } else if (args[2] && args[2] == "ksu-10647-Image-android12-5.10.136_2022-11-boot.img" && result != false) {
+                information += "Parsing boot image: [ksu-10647-Image-android12-5.10.136_2022-11-boot.img]";
+                information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
+                information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[37331556]";
+                information += "<br>RAMDISK_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1380084]";
+                information += "<br>OS_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[12.0.0]";
+                information += "<br>OS_PATCH_LEVEL&nbsp;&nbsp;[2022-11]";
+                information += "<br>PAGESIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4096]";
+                information += "<br>CMDLINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]";
+                information += "<br>KERNEL_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[raw]";
+                information += "<br>RAMDISK_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_legacy]";
+                information += "<br>VBMETA";
+            } else if (args[2] && args[2] == "ksu-10647-Image-android13-5.10.149_2022-05-boot-gz.img" && result != false) {
+                information += "Parsing boot image: [ksu-10647-Image-android13-5.10.149_2022-05-boot-gz.img]";
+                information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
+                information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[43387204]";
+                information += "<br>RAMDISK_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0]";
+                information += "<br>PAGESIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4096]";
+                information += "<br>CMDLINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]";
+                information += "<br>KERNEL_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[gzip]";
+                information += "<br>VBMETA";
+            } else if (args[2] && args[2] == "ksu-10647-Image-android13-5.10.149_2022-05-boot-lz4.img" && result != false) {
+                information += "Parsing boot image: [ksu-10647-Image-android13-5.10.149_2022-05-boot-lz4.img]";
+                information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
+                information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[43387204]";
+                information += "<br>RAMDISK_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0]";
+                information += "<br>PAGESIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4096]";
+                information += "<br>CMDLINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]";
+                information += "<br>KERNEL_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_lg]";
+                information += "<br>VBMETA";
+            } else if (args[2] && args[2] == "ksu-10647-Image-android13-5.10.149_2022-05-boot.img" && result != false) {
+                information += "Parsing boot image: [ksu-10647-Image-android13-5.10.149_2022-05-boot.img]";
                 information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
                 information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[43387204]";
                 information += "<br>RAMDISK_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0]";
