@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Terminal Faker Demo</title>
+    <title>Practical Exam for KernelSU</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <meta name="theme-color" content="#000" />
     <link rel="icon" type="image/png" href="favicon.png" />
@@ -34,7 +34,7 @@
 
   </head>
   <body>
-    <h1><a href="https://github.com/syntaxseed/terminalfaker">Terminal Faker Demo</a></h1>
+    <h1><a href="https://github.com/syntaxseed/terminalfaker">Practical Exam for KernelSU</a></h1>
 
     <div id="terminal">
         <p class="hidden">
@@ -58,7 +58,7 @@
         var useBootLoader = true;
 
         // Set the command prompt style:
-        var customPrompt = function () { return "guest@TermFake ("+Terminal.path+") $ ";};
+        var customPrompt = function () { return "root@Arch ("+Terminal.path+") # ";};
 
         // Initialize the terminal:
         var term = Terminal.init(document.getElementById("terminal"), commands, customPrompt);

@@ -1,5 +1,17 @@
-var originalFilesystem="<d name='/' path='/'>\
+var originalFilesystem = "<d name='/' path='/'>\
             <c>\
+            <d name='bin' path='/bin/'>\
+                <c>\
+                </c>\
+            </d>\
+            <d name='boot' path='/boot/'>\
+                <c>\
+                </c>\
+            </d>\
+            <d name='dev' path='/dev/'>\
+                <c>\
+                </c>\
+            </d>\
             <d name='docs' path='/docs/'>\
                 <c>\
                     <d name='private' path='/docs/private/'>\
@@ -20,20 +32,118 @@ var originalFilesystem="<d name='/' path='/'>\
                     </f>\
                 </c>\
             </d>\
-            <d name='more' path='/more/'>\
+            <d name='etc' path='/etc/'>\
                 <c>\
-                    <f name='moretodo.txt' path='/more/'>\
-                        <contents>Don't forget this other stuff.</contents>\
-                    </f>\
+                </c>\
+            </d>\
+            <d name='home' path='/home/'>\
+                <c>\
+                    <d name='user' path='/home/user/'>\
+                        <c>\
+                           <d name='workdir' path='/home/user/workdir/'>\
+                               <c>\
+                                  <f name='boot-official.img' path='/home/user/workdir/'>\
+                                      <contents>This is the official boot.img.</contents>\
+                                  </f>\
+                                  <f name='kernel-WSA-arm64-5.10.117.2-20220906.zip' path='/home/user/workdir/'>\
+                                      <contents>https://github.com/tiann/KernelSU/releases</contents>\
+                                  </f>\
+                                  <f name='kernel-WSA-x86_64-5.10.117.2-20220906.zip' path='/home/user/workdir/'>\
+                                      <contents>https://github.com/tiann/KernelSU/releases</contents>\
+                                  </f>\
+                                  <f name='ksu-10647-Image-android12-5.10.136_2022-11-boot-gz.img' path='/home/user/workdir/'>\
+                                      <contents>https://github.com/tiann/KernelSU/releases</contents>\
+                                  </f>\
+                                  <f name='ksu-10647-Image-android12-5.10.136_2022-11-boot-lz4.img' path='/home/user/workdir/'>\
+                                      <contents>https://github.com/tiann/KernelSU/releases</contents>\
+                                  </f>\
+                                  <f name='ksu-10647-Image-android12-5.10.136_2022-11-boot.img' path='/home/user/workdir/'>\
+                                      <contents>https://github.com/tiann/KernelSU/releases</contents>\
+                                  </f>\
+                                  <f name='ksu-10647-Image-android13-5.10.149_2022-05-boot-gz.img' path='/home/user/workdir/'>\
+                                      <contents>https://github.com/tiann/KernelSU/releases</contents>\
+                                  </f>\
+                                  <f name='ksu-10647-Image-android13-5.10.149_2022-05-boot-lz4.img' path='/home/user/workdir/'>\
+                                      <contents>https://github.com/tiann/KernelSU/releases</contents>\
+                                  </f>\
+                                  <f name='ksu-10647-Image-android13-5.10.149_2022-05-boot.img' path='/home/user/workdir/'>\
+                                      <contents>https://github.com/tiann/KernelSU/releases</contents>\
+                                  </f>\
+                                  <f name='magiskboot' path='/home/user/workdir/'>\
+                                      <contents>https://github.com/topjohnwu/Magisk/releases</contents>\
+                                  </f>\
+                               </c>\
+                           </d>\
+                           <d name='more' path='/home/user/more/'>\
+                               <c>\
+                                  <f name='moretodo.txt' path='/home/user/more/'>\
+                                      <contents>Don't forget this other stuff.</contents>\
+                                  </f>\
+                               </c>\
+                           </d>\
+                           <f name='cool.txt' path='/home/user/'>\
+                               <contents>There is a hidden command in this terminal called 'secret'.</contents>\
+                           </f>\
+                        </c>\
+                    </d>\
+                </c>\
+            </d>\
+            <d name='lib' path='/lib/'>\
+                <c>\
+                </c>\
+            </d>\
+            <d name='lib64' path='/lib64/'>\
+                <c>\
+                </c>\
+            </d>\
+            <d name='mnt' path='/mnt/'>\
+                <c>\
+                </c>\
+            </d>\
+            <d name='opt' path='/opt/'>\
+                <c>\
+                </c>\
+            </d>\
+            <d name='proc' path='/proc/'>\
+                <c>\
+                </c>\
+            </d>\
+            <d name='root' path='/root/'>\
+                <c>\
+                </c>\
+            </d>\
+            <d name='run' path='/run/'>\
+                <c>\
+                </c>\
+            </d>\
+            <d name='sbin' path='/sbin/'>\
+                <c>\
+                </c>\
+            </d>\
+            <d name='srv' path='/srv/'>\
+                <c>\
                 </c>\
             </d>\
             <d name='stuff' path='/stuff/'>\
                 <c>\
                 </c>\
             </d>\
-            <f name='cool.txt' path='/'>\
-                <contents>There is a hidden command in this terminal called 'secret'.</contents>\
-            </f>\
+            <d name='sys' path='/sys/'>\
+                <c>\
+                </c>\
+            </d>\
+            <d name='tmp' path='/tmp/'>\
+                <c>\
+                </c>\
+            </d>\
+            <d name='usr' path='/usr/'>\
+                <c>\
+                </c>\
+            </d>\
+            <d name='var' path='/var/'>\
+                <c>\
+                </c>\
+            </d>\
             </c>\
         </d>";
 /*

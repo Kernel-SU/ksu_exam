@@ -22,14 +22,15 @@ the font size as it's quite small.
 */
 #terminal .input {
     height:         1em;
-    min-width:      3em;
+    min-width:      5em;
     outline-color:  transparent;
-    border:         none;
     display:        inline-block;
+    border: 0;
+    outline: 0;
 }
 
-#terminal .prompt{
-    color:#00ff99;
+#terminal .prompt {
+    color: #5BF68E;
 }
 
 #terminal p {
@@ -39,7 +40,7 @@ the font size as it's quite small.
 
 #terminal .filesystem-d {
     font-weight:bold;
-    color: #6666ff;
+    color: #57C7FE;
 }
 #terminal .filsystem-f {
 
