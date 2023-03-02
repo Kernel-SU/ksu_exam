@@ -51,22 +51,31 @@ var originalFilesystem = "<d name='/' path='/'>\
                                   <f name='kernel-WSA-x86_64-5.10.117.2-20220906.zip' path='/home/user/workdir/'>\
                                       <contents>https://github.com/tiann/KernelSU/releases</contents>\
                                   </f>\
-                                  <f name='ksu-10647-Image-android12-5.10.136_2022-11-boot-gz.img' path='/home/user/workdir/'>\
+                                  <f name='ksu-10672-Image-android12-5.10.136_2022-11-boot-gz.img' path='/home/user/workdir/'>\
                                       <contents>https://github.com/tiann/KernelSU/releases</contents>\
                                   </f>\
-                                  <f name='ksu-10647-Image-android12-5.10.136_2022-11-boot-lz4.img' path='/home/user/workdir/'>\
+                                  <f name='ksu-10672-Image-android12-5.10.136_2022-11-boot-lz4.img' path='/home/user/workdir/'>\
                                       <contents>https://github.com/tiann/KernelSU/releases</contents>\
                                   </f>\
-                                  <f name='ksu-10647-Image-android12-5.10.136_2022-11-boot.img' path='/home/user/workdir/'>\
+                                  <f name='ksu-10672-Image-android12-5.10.136_2022-11-boot.img' path='/home/user/workdir/'>\
                                       <contents>https://github.com/tiann/KernelSU/releases</contents>\
                                   </f>\
-                                  <f name='ksu-10647-Image-android13-5.10.149_2022-05-boot-gz.img' path='/home/user/workdir/'>\
+                                  <f name='ksu-10672-Image-android13-5.10.107_2022-05-boot-gz.img' path='/home/user/workdir/'>\
                                       <contents>https://github.com/tiann/KernelSU/releases</contents>\
                                   </f>\
-                                  <f name='ksu-10647-Image-android13-5.10.149_2022-05-boot-lz4.img' path='/home/user/workdir/'>\
+                                  <f name='ksu-10672-Image-android13-5.10.107_2022-05-boot-lz4.img' path='/home/user/workdir/'>\
                                       <contents>https://github.com/tiann/KernelSU/releases</contents>\
                                   </f>\
-                                  <f name='ksu-10647-Image-android13-5.10.149_2022-05-boot.img' path='/home/user/workdir/'>\
+                                  <f name='ksu-10672-Image-android13-5.10.107_2022-05-boot.img' path='/home/user/workdir/'>\
+                                      <contents>https://github.com/tiann/KernelSU/releases</contents>\
+                                  </f>\
+                                  <f name='ksu-10672-Image-android13-5.10.149_2022-05-boot-gz.img' path='/home/user/workdir/'>\
+                                      <contents>https://github.com/tiann/KernelSU/releases</contents>\
+                                  </f>\
+                                  <f name='ksu-10672-Image-android13-5.10.149_2022-05-boot-lz4.img' path='/home/user/workdir/'>\
+                                      <contents>https://github.com/tiann/KernelSU/releases</contents>\
+                                  </f>\
+                                  <f name='ksu-10672-Image-android13-5.10.149_2022-05-boot.img' path='/home/user/workdir/'>\
                                       <contents>https://github.com/tiann/KernelSU/releases</contents>\
                                   </f>\
                                   <f name='magiskboot' path='/home/user/workdir/'>\
