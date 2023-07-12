@@ -13,6 +13,7 @@ var used_magiskboot = false;
 */
 builtInCommands.base64enc = {
     about: "base64enc [string]<br>&nbsp;&nbsp;Base64 encode a string.",
+    hidden: true,
     exe: function (args) {
         if (args.length == 1) {
             return "No string specified.";
@@ -27,6 +28,7 @@ builtInCommands.base64enc = {
 */
 builtInCommands.base64dec = {
     about: "base64dec [string]<br>&nbsp;&nbsp;Base64 decode a string.",
+    hidden: true,
     exe: function (args) {
         if (args.length == 1) {
             return "No string specified.";
