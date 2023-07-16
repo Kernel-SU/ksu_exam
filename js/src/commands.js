@@ -7,6 +7,9 @@
 var customCommands = {};
 var devicestatus = 'system';
 var used_magiskboot = false;
+var android_version = '13';
+var api_version = '33';
+var kernel_version = '5.10.117-android12-9-xxxx-xxxx';
 
 /**
  * Base64 encodes a string.
@@ -135,7 +138,12 @@ function getQueryVariable(variable) {
 customCommands.status ={
     about: "Get device statu",
     exe: function () {
-        return "Device status:&nbsp;&nbsp;" + devicestatus;
+        var information = "";
+        information += "Device status:&nbsp;&nbsp;&nbsp;&nbsp;" + devicestatus;
+        information += "<br>Android Version:&nbsp;&nbsp;" + android_version;
+        information += "<br>API Version:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + api_version;
+        information += "<br>Kernel Version:&nbsp;&nbsp;&nbsp;" + kernel_version;
+        return information;
     }
 }
 
