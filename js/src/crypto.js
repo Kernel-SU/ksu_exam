@@ -102,7 +102,7 @@ function () {
       if (v.length < 2) v[1] = 0; // algorithm doesn't work for n<2 so fudge by adding a null
 
       var n = v.length;
-      var delta = 0x9e3779b9;
+      var delta = -0x61c88647;
       var q = Math.floor(6 + 52 / n);
       var z = v[n - 1],
           y = v[0];
@@ -136,7 +136,7 @@ function () {
     key: "decode",
     value: function decode(v, k) {
       var n = v.length;
-      var delta = 0x9e3779b9;
+      var delta = -0x61c88647;
       var q = Math.floor(6 + 52 / n);
       var z = v[n - 1],
           y = v[0];
