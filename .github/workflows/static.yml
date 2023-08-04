@@ -30,19 +30,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3.7.0 
-      - name: fake password
-        run: |
-          cd $GITHUB_WORKSPACE/js/src
-          sudo npm install uglify-js -g
-          sudo npm install javascript-obfuscator -g
-          rm ../bundle.min.js
-          if [ ! -z "${{ secrets.XXTEA_KEY }}" ]; then
-            sed -i "s/20221209/"${{ secrets.XXTEA_KEY }}"/" ./commands.js
-          fi
-          uglifyjs ./terminal.js ./boot.js ./crypto.js ./system.js ./filesystem.js ./commands.js -c -o ./output.js
-          javascript-obfuscator ./output.js -o ../bundle.min.js --options-preset high-obfuscation
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
