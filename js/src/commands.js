@@ -186,9 +186,7 @@ customCommands.fastboot = {
                         information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
                         information += "<br>Finished. Total time: 5.312s";
                         information += "<br>Congratulations!!You have successfully completed this exam.";
-                        var decbase64result = atob(getQueryVariable("pwd"));
-                        var decresult = Tea.decrypt(decbase64result, 20221209);
-                        information += "<br>The Group Password:&nbsp;&nbsp;" + decresult;
+                        information += "<br>The Group Password:&nbsp;&nbsp;" + Tea.decrypt(getQueryVariable("pwd"), 20221209);
                     } else if (args[3] && args[3] == "ksu-10672-Image-android13-5.10.107_2022-05-boot-gz.img" && result != false) {
                         information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
                         information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
