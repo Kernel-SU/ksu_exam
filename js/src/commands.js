@@ -7,6 +7,9 @@
 var customCommands = {};
 var devicestatus = 'system';
 var used_magiskboot = false;
+var android_version = '13';
+var api_version = '33';
+var kernel_version = '5.10.117-android12-9-xxxx-xxxx';
 
 /**
  * Base64 encodes a string.
@@ -135,7 +138,12 @@ function getQueryVariable(variable) {
 customCommands.status ={
     about: "Get device statu",
     exe: function () {
-        return "Device status:&nbsp;&nbsp;" + devicestatus;
+        var information = "";
+        information += "Device status:&nbsp;&nbsp;&nbsp;&nbsp;" + devicestatus;
+        information += "<br>Android Version:&nbsp;&nbsp;" + android_version;
+        information += "<br>API Version:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + api_version;
+        information += "<br>Kernel Version:&nbsp;&nbsp;&nbsp;" + kernel_version;
+        return information;
     }
 }
 
@@ -178,7 +186,9 @@ customCommands.fastboot = {
                         information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
                         information += "<br>Finished. Total time: 5.312s";
                         information += "<br>Congratulations!!You have successfully completed this exam.";
-                        information += "<br>The Group Password:&nbsp;&nbsp;" + atob(getQueryVariable("pwd"));
+                        var decbase64result = atob(getQueryVariable("pwd"));
+                        var decresult = Tea.decrypt(decbase64result, 20221209);
+                        information += "<br>The Group Password:&nbsp;&nbsp;" + decresult;
                     } else if (args[3] && args[3] == "ksu-10672-Image-android13-5.10.107_2022-05-boot-gz.img" && result != false) {
                         information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
                         information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
