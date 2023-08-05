@@ -134,7 +134,7 @@ builtInCommands.ls = {
         var children = Array.prototype.slice.call(term.filesystemPointer.querySelector('c').children);
         children.forEach(function(element, index){
             listing += "<span class='filesystem-"+element.nodeName+"'>"+element.getAttribute('name')+"</span>";
-            if( args[1] && args[1] == "-l"){
+            if( args[1] && (args[1] == "-l" || args[1] == "-al")){
                 listing += "<br>";
             }else{
                 listing += "&nbsp;&nbsp;";
