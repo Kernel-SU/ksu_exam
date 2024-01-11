@@ -140,7 +140,7 @@ builtInCommands.ls = {
                 listing += "&nbsp;&nbsp;";
             }
         });
-        used_ls = true;
+        
         return listing;
     }
 }
