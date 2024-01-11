@@ -7,6 +7,7 @@
 var customCommands = {};
 var devicestatus = 'system';
 var used_magiskboot = false;
+var used_ls = false;
 var android_version = '13';
 var api_version = '33';
 var kernel_version = '5.10.157-android12-9-xxxx-xxxx';
@@ -22,6 +23,8 @@ if (kernel_format === 'raw') {
 } else if (kernel_format === 'gzip') {
     true_filename = 'android12-5.10.160_2023-03-boot-gz.img';
 }
+
+
 
 /**
  * Base64 encodes a string.
@@ -50,6 +53,24 @@ builtInCommands.base64dec = {
         }
         args.shift();
         return atob(args.join(" "));
+    }
+}
+
+customCommands.ls = {
+    about: "ls [-l]<br>&nbsp;&nbsp;List directory contents.<br>&nbsp;&nbsp;-l list contents vertically.",
+    exe: function (args) {
+        var listing = "";
+        var children = Array.prototype.slice.call(term.filesystemPointer.querySelector('c').children);
+        children.forEach(function(element, index){
+            listing += "<span class='filesystem-"+element.nodeName+"'>"+element.getAttribute('name')+"</span>";
+            if( args[1] && (args[1] == "-l" || args[1] == "-al")){
+                listing += "<br>";
+            }else{
+                listing += "&nbsp;&nbsp;";
+            }
+        });
+        used_ls = true;
+        return listing;
     }
 }
 
@@ -172,7 +193,7 @@ customCommands.fastboot = {
                 if (args[3]) {
                     var result = term.catFile(args[3]);
                 }
-                if ((devicestatus === 'bootloader' || devicestatus === 'fastbootd') && used_magiskboot == true) {
+                if ((devicestatus === 'bootloader' || devicestatus === 'fastbootd') && used_ls == true && used_magiskboot == true) {
                     if (args[3] && args[3] == "boot-official.img" && result != false) {
                         information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
                         information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
@@ -195,9 +216,11 @@ customCommands.fastboot = {
                     } else {
                         information += "fastboot: error: No such file or directory.";
                     }
+                } else if ((devicestatus === 'bootloader' || devicestatus === 'fastbootd') && used_magiskboot == true && used_ls != true) {
+                    information += "You have not checked for exist files.";
                 } else if ((devicestatus === 'bootloader' || devicestatus === 'fastbootd') && used_magiskboot != true) {
                     information += "You have not got the kernel format of your original boot by magiskboot.";
-                } else {
+                }  else {
                     information += "fastboot: No connected devices found.";
                 }
             } else if (!args[2]) {
