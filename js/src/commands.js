@@ -198,7 +198,7 @@ customCommands.fastboot = {
                         information += "fastboot: error: No such file or directory.";
                     }
                 } else if ((devicestatus === 'bootloader' || devicestatus === 'fastbootd') && used_magiskboot == true && used_ls != true) {
-                    information += "You have not viewed the files in the directory.";
+                    information += "You have not checked for exist files.";
                 } else if ((devicestatus === 'bootloader' || devicestatus === 'fastbootd') && used_magiskboot != true) {
                     information += "You have not got the kernel format of your original boot by magiskboot.";
                 }  else {
