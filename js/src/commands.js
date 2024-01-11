@@ -193,8 +193,7 @@ customCommands.fastboot = {
                 if (args[3]) {
                     var result = term.catFile(args[3]);
                 }
-                if ((devicestatus === 'bootloader' || devicestatus === 'fastbootd') && used_magiskboot == true) {
-                    if ((devicestatus === 'bootloader' || devicestatus === 'fastbootd') && used_ls == true && used_magiskboot == true) {
+                if ((devicestatus === 'bootloader' || devicestatus === 'fastbootd') && used_ls == true && used_magiskboot == true) {
                     if (args[3] && args[3] == "boot-official.img" && result != false) {
                         information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
                         information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
