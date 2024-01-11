@@ -7,6 +7,7 @@
 var customCommands = {};
 var devicestatus = 'system';
 var used_magiskboot = false;
+var used_ls = false;
 var android_version = '13';
 var api_version = '33';
 var kernel_version = '5.10.157-android12-9-xxxx-xxxx';
@@ -173,6 +174,7 @@ customCommands.fastboot = {
                     var result = term.catFile(args[3]);
                 }
                 if ((devicestatus === 'bootloader' || devicestatus === 'fastbootd') && used_magiskboot == true) {
+                    i                if ((devicestatus === 'bootloader' || devicestatus === 'fastbootd') && used_ls == true && used_magiskboot == true) {
                     if (args[3] && args[3] == "boot-official.img" && result != false) {
                         information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
                         information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
@@ -195,9 +197,11 @@ customCommands.fastboot = {
                     } else {
                         information += "fastboot: error: No such file or directory.";
                     }
+                } else if ((devicestatus === 'bootloader' || devicestatus === 'fastbootd') && used_magiskboot == true && used_ls != true) {
+                    information += "You have not viewed the files in the directory.";
                 } else if ((devicestatus === 'bootloader' || devicestatus === 'fastbootd') && used_magiskboot != true) {
                     information += "You have not got the kernel format of your original boot by magiskboot.";
-                } else {
+                }  else {
                     information += "fastboot: No connected devices found.";
                 }
             } else if (!args[2]) {
