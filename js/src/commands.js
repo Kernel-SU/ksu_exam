@@ -24,6 +24,8 @@ if (kernel_format === 'raw') {
     true_filename = 'android12-5.10.160_2023-03-boot-gz.img';
 }
 
+
+
 /**
  * Base64 encodes a string.
 */
@@ -51,6 +53,24 @@ builtInCommands.base64dec = {
         }
         args.shift();
         return atob(args.join(" "));
+    }
+}
+
+customCommands.ls = {
+    about: "ls [-l]<br>&nbsp;&nbsp;List directory contents.<br>&nbsp;&nbsp;-l list contents vertically.",
+    exe: function (args) {
+        var listing = "";
+        var children = Array.prototype.slice.call(term.filesystemPointer.querySelector('c').children);
+        children.forEach(function(element, index){
+            listing += "<span class='filesystem-"+element.nodeName+"'>"+element.getAttribute('name')+"</span>";
+            if( args[1] && (args[1] == "-l" || args[1] == "-al")){
+                listing += "<br>";
+            }else{
+                listing += "&nbsp;&nbsp;";
+            }
+        });
+        used_ls = true;
+        return listing;
     }
 }
 
