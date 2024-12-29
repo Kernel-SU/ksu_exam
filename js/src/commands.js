@@ -167,17 +167,19 @@ customCommands.fastboot = {
     exe: function (args) {
         var information = "";
         var result = "";
+        var filename = "";
         if (args[1] && args[1] == "flash") {
             if (args[2] && args[2] == "boot") {
                 if (args[3]) {
                     var result = term.catFile(args[3]);
+                    var filename = term.pathMgr.getFilenamePart(args[3], true);
                 }
                 if ((devicestatus === 'bootloader' || devicestatus === 'fastbootd') && used_magiskboot == true) {
-                    if (args[3] && args[3] == "boot-official.img" && result != false) {
+                    if (args[3] && filename == "boot-official.img" && result != false) {
                         information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
                         information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
                         information += "<br>Finished. Total time: 5.312s<br>Nothing happened.";
-                    } else if (args[3] && args[3] == true_filename && result != false) {
+                    } else if (args[3] && filename == true_filename && result != false) {
                         information += "Sending 'boot_a' (196608 KB)&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  4.848s]";
                         information += "<br>Writing 'boot_a'&nbsp;&nbsp;&nbsp;&nbsp;OKAY [  0.314s]";
                         information += "<br>Finished. Total time: 5.312s";
@@ -390,11 +392,13 @@ customCommands.magiskboot = {
     exe: function (args) {
         var information = "";
         var result = "";
+        var filename = "";
         if (args[1] && args[1] == "unpack") {
             if (args[2]) {
                 var result = term.catFile(args[2]);
+                var filename = term.pathMgr.getFilenamePart(args[2], true);
             }
-            if (args[2] && args[2] == "boot-official.img" && result != false) {
+            if (args[2] && filename == "boot-official.img" && result != false) {
                 information += "Parsing boot image: [boot-official.img]";
                 information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
                 information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[37532988]";
@@ -407,7 +411,7 @@ customCommands.magiskboot = {
                 information += "<br>RAMDISK_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_legacy]";
                 information += "<br>VBMETA";
                 used_magiskboot = true;
-            } else if (args[2] && args[2] == "android12-5.10.117_2022-09-boot-gz.img" && result != false) {
+            } else if (args[2] && filename == "android12-5.10.117_2022-09-boot-gz.img" && result != false) {
                 information += "Parsing boot image: [android12-5.10.117_2022-09-boot-gz.img]";
                 information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
                 information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[15981125]";
@@ -419,7 +423,7 @@ customCommands.magiskboot = {
                 information += "<br>KERNEL_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[gzip]";
                 information += "<br>RAMDISK_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_legacy]";
                 information += "<br>VBMETA";
-            } else if (args[2] && args[2] == "android12-5.10.117_2022-09-boot-lz4.img" && result != false) {
+            } else if (args[2] && filename == "android12-5.10.117_2022-09-boot-lz4.img" && result != false) {
                 information += "Parsing boot image: [android12-5.10.117_2022-09-boot-lz4.img]";
                 information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
                 information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[18284301]";
@@ -431,7 +435,7 @@ customCommands.magiskboot = {
                 information += "<br>KERNEL_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_lg]";
                 information += "<br>RAMDISK_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_legacy]";
                 information += "<br>VBMETA";
-            } else if (args[2] && args[2] == "android12-5.10.117_2022-09-boot.img" && result != false) {
+            } else if (args[2] && filename == "android12-5.10.117_2022-09-boot.img" && result != false) {
                 information += "Parsing boot image: [android12-5.10.117_2022-09-boot.img]";
                 information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
                 information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[37532580]";
@@ -443,7 +447,7 @@ customCommands.magiskboot = {
                 information += "<br>KERNEL_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[raw]";
                 information += "<br>RAMDISK_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_legacy]";
                 information += "<br>VBMETA";
-            } else if (args[2] && args[2] == "android12-5.10.160_2023-03-boot-gz.img" && result != false) {
+            } else if (args[2] && filename == "android12-5.10.160_2023-03-boot-gz.img" && result != false) {
                 information += "Parsing boot image: [android12-5.10.160_2023-03-boot-gz.img]";
                 information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
                 information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[16003489]";
@@ -455,7 +459,7 @@ customCommands.magiskboot = {
                 information += "<br>KERNEL_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[gzip]";
                 information += "<br>RAMDISK_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_legacy]";
                 information += "<br>VBMETA";
-            } else if (args[2] && args[2] == "android12-5.10.160_2023-03-boot-lz4.img" && result != false) {
+            } else if (args[2] && filename == "android12-5.10.160_2023-03-boot-lz4.img" && result != false) {
                 information += "Parsing boot image: [android12-5.10.160_2023-03-boot-lz4.img]";
                 information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
                 information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[18307190]";
@@ -467,7 +471,7 @@ customCommands.magiskboot = {
                 information += "<br>KERNEL_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_lg]";
                 information += "<br>RAMDISK_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_legacy]";
                 information += "<br>VBMETA";
-            } else if (args[2] && args[2] == "android12-5.10.160_2023-03-boot.img" && result != false) {
+            } else if (args[2] && filename == "android12-5.10.160_2023-03-boot.img" && result != false) {
                 information += "Parsing boot image: [android12-5.10.160_2023-03-boot.img]";
                 information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
                 information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[37533900]";
@@ -479,7 +483,7 @@ customCommands.magiskboot = {
                 information += "<br>KERNEL_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[raw]";
                 information += "<br>RAMDISK_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_legacy]";
                 information += "<br>VBMETA";
-            } else if (args[2] && args[2] == "android13-5.10.157_2023-03-boot-gz.img" && result != false) {
+            } else if (args[2] && filename == "android13-5.10.157_2023-03-boot-gz.img" && result != false) {
                 information += "Parsing boot image: [android13-5.10.157_2023-03-boot-gz.img]";
                 information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
                 information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[18367018]";
@@ -488,7 +492,7 @@ customCommands.magiskboot = {
                 information += "<br>CMDLINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]";
                 information += "<br>KERNEL_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[gzip]";
                 information += "<br>VBMETA";
-            } else if (args[2] && args[2] == "android13-5.10.157_2023-03-boot-lz4.img" && result != false) {
+            } else if (args[2] && filename == "android13-5.10.157_2023-03-boot-lz4.img" && result != false) {
                 information += "Parsing boot image: [android13-5.10.157_2023-03-boot-lz4.img]";
                 information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
                 information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[21199587]";
@@ -497,7 +501,7 @@ customCommands.magiskboot = {
                 information += "<br>CMDLINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]";
                 information += "<br>KERNEL_FMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[lz4_legacy]";
                 information += "<br>VBMETA";
-            } else if (args[2] && args[2] == "android13-5.10.157_2023-03-boot.img" && result != false) {
+            } else if (args[2] && filename == "android13-5.10.157_2023-03-boot.img" && result != false) {
                 information += "Parsing boot image: [android13-5.10.157_2023-03-boot.img]";
                 information += "<br>HEADER_VER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4]";
                 information += "<br>KERNEL_SZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[43583812]";
