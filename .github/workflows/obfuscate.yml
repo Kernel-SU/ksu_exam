@@ -28,14 +28,14 @@ jobs:
             sudo npm install javascript-obfuscator -g
             rm ../bundle.min.js
             if [ ! -z "${{ secrets.XXTEA_KEY }}" ]; then
-                sed -i "s/20221209/"${{ secrets.XXTEA_KEY }}"/" ./commands.js
+                sed -i "s|20221209|${{ secrets.XXTEA_KEY }}|" ./commands.js
             fi
             uglifyjs ./terminal.js ./boot.js ./crypto.js ./system.js ./filesystem.js ./commands.js ./init.js -c -o ./output.js
             javascript-obfuscator ./output.js -o ../bundle.min.js --options-preset high-obfuscation --control-flow-flattening=true --debug-protection=true  --debug-protection-interval=1000  --disable-console-output=true --domain-lock=exam.kernelsu.org --force-transform-strings=You,have,successfully,completed,exam,The,Group,Pass,word,pwd,fastboot --identifier-names-generator=dictionary --identifiers-dictionary=You,have,successfully,completed,exam,The,Group,Pass,word,pwd,decrypt,fastboot --numbers-to-expressions=true --rename-globals=true --self-defending=true --split-strings-chunk-length=4 --split-strings=true --string-array-calls-transform=true --string-array-encoding=base64,rc4 --string-array-index-shift=true --string-array-shuffle=true --string-array=true --string-array-wrappers-chained-calls=true --transform-object-keys=true --unicode-escape-sequence=true
             uglifyjs ./bundle.min.js -e -o ./bundle.min.js
             rm ./output.js
             if [ ! -z "${{ secrets.XXTEA_KEY }}" ]; then
-                sed -i "s/"${{ secrets.XXTEA_KEY }}"/20221209/" ./commands.js
+                sed -i "s|${{ secrets.XXTEA_KEY }}|20221209|" ./commands.js
             fi
         - name: Commit files
           run: |
