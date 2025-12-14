@@ -30,6 +30,12 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      - name: Download and minify Telegram Web App script
+        run: |
+          curl -o telegram-web-app.js https://telegram.org/js/telegram-web-app.js
+          bunx terser telegram-web-app.js -o public/telegram-web-app.js -c -m
+          rm telegram-web-app.js
+
       - name: Build
         run: bun run build
 
