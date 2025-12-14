@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KernelSU 加群验证</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        :root {
+            --bg-color: var(--tg-theme-bg-color, #ffffff);
+            --text-color: var(--tg-theme-text-color, #000000);
+            --hint-color: var(--tg-theme-hint-color, #999999);
+            --link-color: var(--tg-theme-link-color, #2481cc);
+            --button-color: var(--tg-theme-button-color, #2481cc);
+            --button-text-color: var(--tg-theme-button-text-color, #ffffff);
+            --secondary-bg-color: var(--tg-theme-secondary-bg-color, #f0f0f0);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 16px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: var(--hint-color);
+        }
+
+        .question {
+            background: var(--secondary-bg-color);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .question-number {
+            font-size: 12px;
+            color: var(--hint-color);
+        }
+
+        .question-type {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background: var(--button-color);
+            color: var(--button-text-color);
+        }
+
+        .question-type.multiple {
+            background: #9b59b6;
+        }
+
+        .question-type.boolean {
+            background: #27ae60;
+        }
+
+        .question-text {
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: var(--bg-color);
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option:hover {
+            border-color: var(--button-color);
+        }
+
+        .option.selected {
+            background: var(--button-color);
+            color: var(--button-text-color);
+        }
+
+        /* 多选题选中但未完全选择的状态 */
+        .option.partial {
+            border-color: var(--button-color);
+            background: rgba(36, 129, 204, 0.1);
+        }
+
+        .option-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--hint-color);
+            border-radius: 4px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .option.selected .option-checkbox {
+            background: var(--button-text-color);
+            border-color: var(--button-text-color);
+        }
+
+        .option.selected .option-checkbox::after {
+            content: '✓';
+            color: var(--button-color);
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .option-radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--hint-color);
+            border-radius: 50%;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .option.selected .option-radio {
+            border-color: var(--button-text-color);
+        }
+
+        .option.selected .option-radio::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--button-text-color);
+            border-radius: 50%;
+        }
+
+        .option-id {
+            font-weight: 600;
+            margin-right: 8px;
+            min-width: 20px;
+        }
+
+        .option-text {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--button-color);
+            color: var(--button-text-color);
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: opacity 0.2s ease;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .loading, .error, .result {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .loading .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--secondary-bg-color);
+            border-top-color: var(--button-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .error {
+            color: #e74c3c;
+        }
+
+        .result h2 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .result.success h2 {
+            color: #27ae60;
+        }
+
+        .result.fail h2 {
+            color: #e74c3c;
+        }
+
+        .result p {
+            font-size: 14px;
+            color: var(--hint-color);
+            line-height: 1.6;
+        }
+
+        .score {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 12px;
+            color: var(--text-color);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--secondary-bg-color);
+            border-radius: 2px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .progress-bar .progress {
+            height: 100%;
+            background: var(--button-color);
+            transition: width 0.3s ease;
+        }
+
+        .multiple-hint {
+            font-size: 12px;
+            color: var(--hint-color);
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+
+        <div id="questions-container" style="display:none;">
+            <div class="header">
+                <h1 id="title">KernelSU 加群验证</h1>
+                <p id="subtitle">请回答以下问题</p>
+            </div>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div id="questions"></div>
+            <button class="submit-btn" onclick="submitAnswers()" id="submitBtn" disabled>
+                <span id="submitText">提交答案</span>
+            </button>
+        </div>
+
+        <div id="error" class="error" style="display:none;"></div>
+
+        <div id="result" class="result" style="display:none;"></div>
+    </div>
+
+    <script>
+        // 初始化 Telegram Web App
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+
+        // API 基础地址（相对路径）
+        const API_BASE = '';
+
+        // 状态
+        let questions = [];
+        let answers = {}; // { questionId: "A" } 或 { questionId: ["A", "B"] }
+        let sessionId = '';
+        let lang = 'en';
+
+        // 多语言文本
+        const i18n = {
+            zh: {
+                title: 'KernelSU 加群验证',
+                subtitle: '请回答以下问题',
+                submit: '提交答案',
+                submitting: '提交中...',
+                loading: '加载中...',
+                success_title: '验证通过',
+                success_msg: '恭喜！答题全部正确，已自动批准加群请求',
+                fail_title: '验证失败',
+                fail_msg: '答题错误，请重新申请加入群组',
+                score: '得分',
+                question: '题目',
+                single: '单选',
+                multiple: '多选',
+                boolean: '判断',
+                multiple_hint: '可选择多个选项'
+            },
+            en: {
+                title: 'KernelSU Group Verification',
+                subtitle: 'Please answer the following questions',
+                submit: 'Submit',
+                submitting: 'Submitting...',
+                loading: 'Loading...',
+                success_title: 'Verification Passed',
+                success_msg: 'Congratulations! All answers correct. Your join request has been approved.',
+                fail_title: 'Verification Failed',
+                fail_msg: 'Incorrect answers. Please reapply to join the group.',
+                score: 'Score',
+                question: 'Question',
+                single: 'Single',
+                multiple: 'Multiple',
+                boolean: 'T/F',
+                multiple_hint: 'Select multiple options'
+            }
+        };
+
+        // 获取当前语言的文本
+        function t(key) {
+            const texts = lang.includes('zh') ? i18n.zh : i18n.en;
+            return texts[key] || key;
+        }
+
+        // HTML 转义函数 - 防止 XSS 攻击
+        function escapeHtml(text) {
+            if (typeof text !== 'string') return '';
+            const escapeMap = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            };
+            return text.replace(/[&<>"']/g, char => escapeMap[char]);
+        }
+
+        // 更新 UI 语言
+        function updateUILanguage() {
+            document.getElementById('title').textContent = t('title');
+            document.getElementById('subtitle').textContent = t('subtitle');
+            document.getElementById('submitText').textContent = t('submit');
+        }
+
+        // 加载题目
+        async function loadQuestions() {
+            try {
+                const response = await fetch(`${API_BASE}/api/questions`, {
+                    headers: {
+                        'X-Telegram-Init-Data': tg.initData
+                    }
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.message || 'Failed to load questions');
+                }
+
+                const data = await response.json();
+                sessionId = data.session_id;
+                questions = data.questions;
+                lang = data.lang || 'en';
+
+                updateUILanguage();
+                renderQuestions();
+            } catch (err) {
+                showError(err.message);
+            }
+        }
+
+        // 获取题目类型显示文本和样式类
+        function getQuestionTypeInfo(type) {
+            switch (type) {
+                case 'multiple':
+                    return { text: t('multiple'), className: 'multiple' };
+                case 'boolean':
+                    return { text: t('boolean'), className: 'boolean' };
+                default:
+                    return { text: t('single'), className: 'single' };
+            }
+        }
+
+        // 渲染题目
+        function renderQuestions() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('questions-container').style.display = 'block';
+
+            const container = document.getElementById('questions');
+            container.innerHTML = questions.map((q, idx) => {
+                const typeInfo = getQuestionTypeInfo(q.question_type);
+                const isMultiple = q.question_type === 'multiple';
+                const indicatorClass = isMultiple ? 'option-checkbox' : 'option-radio';
+                // 转义题目 ID 和类型（虽然来自服务器，但保持安全习惯）
+                const safeQid = parseInt(q.id) || 0;
+                const safeType = escapeHtml(q.question_type);
+
+                return `
+                    <div class="question" data-id="${safeQid}" data-type="${safeType}">
+                        <div class="question-header">
+                            <span class="question-number">${escapeHtml(t('question'))} ${idx + 1} / ${questions.length}</span>
+                            <span class="question-type ${escapeHtml(typeInfo.className)}">${escapeHtml(typeInfo.text)}</span>
+                        </div>
+                        <div class="question-text">${escapeHtml(q.text)}</div>
+                        ${isMultiple ? `<div class="multiple-hint">${escapeHtml(t('multiple_hint'))}</div>` : ''}
+                        <div class="options">
+                            ${q.options.map(opt => {
+                                const safeOptId = escapeHtml(opt.id);
+                                return `
+                                <div class="option" data-qid="${safeQid}" data-oid="${safeOptId}" data-type="${safeType}" onclick="selectOption(${safeQid}, '${safeOptId}', '${safeType}')">
+                                    <div class="${indicatorClass}"></div>
+                                    <span class="option-id">${safeOptId}.</span>
+                                    <span class="option-text">${escapeHtml(opt.text)}</span>
+                                </div>
+                            `}).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            updateProgress();
+        }
+
+        // 选择选项
+        function selectOption(questionId, optionId, questionType) {
+            if (questionType === 'multiple') {
+                // 多选题
+                if (!answers[questionId]) {
+                    answers[questionId] = [];
+                }
+                const idx = answers[questionId].indexOf(optionId);
+                if (idx > -1) {
+                    answers[questionId].splice(idx, 1);
+                } else {
+                    answers[questionId].push(optionId);
+                }
+                // 如果没有选择任何选项，删除该答案
+                if (answers[questionId].length === 0) {
+                    delete answers[questionId];
+                }
+            } else {
+                // 单选题和判断题
+                answers[questionId] = optionId;
+            }
+
+            // 更新 UI
+            updateOptionUI(questionId, questionType);
+            updateProgress();
+            checkAllAnswered();
+        }
+
+        // 更新选项 UI
+        function updateOptionUI(questionId, questionType) {
+            const options = document.querySelectorAll(`.option[data-qid="${questionId}"]`);
+            options.forEach(el => {
+                const oid = el.getAttribute('data-oid');
+                el.classList.remove('selected', 'partial');
+
+                if (questionType === 'multiple') {
+                    if (answers[questionId] && answers[questionId].includes(oid)) {
+                        el.classList.add('selected');
+                    }
+                } else {
+                    if (answers[questionId] === oid) {
+                        el.classList.add('selected');
+                    }
+                }
+            });
+        }
+
+        // 更新进度条
+        function updateProgress() {
+            const answered = Object.keys(answers).length;
+            const total = questions.length;
+            const percentage = total > 0 ? (answered / total) * 100 : 0;
+            document.getElementById('progress').style.width = `${percentage}%`;
+        }
+
+        // 检查是否全部答完
+        function checkAllAnswered() {
+            const allAnswered = questions.every(q => {
+                if (q.question_type === 'multiple') {
+                    return answers[q.id] && answers[q.id].length > 0;
+                }
+                return answers[q.id] !== undefined;
+            });
+            document.getElementById('submitBtn').disabled = !allAnswered;
+        }
+
+        // 提交答案
+        async function submitAnswers() {
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            submitBtn.disabled = true;
+            submitText.textContent = t('submitting');
+
+            try {
+                // 格式化答案
+                const formattedAnswers = Object.entries(answers).map(([qid, answer]) => ({
+                    question_id: parseInt(qid),
+                    answer: Array.isArray(answer) ? answer.join(',') : answer
+                }));
+
+                const response = await fetch(`${API_BASE}/api/submit`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Telegram-Init-Data': tg.initData
+                    },
+                    body: JSON.stringify({
+                        session_id: sessionId,
+                        answers: formattedAnswers
+                    })
+                });
+
+                const result = await response.json();
+                showResult(result);
+            } catch (err) {
+                showError(err.message);
+            }
+        }
+
+        // 显示结果
+        function showResult(result) {
+            document.getElementById('questions-container').style.display = 'none';
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+
+            if (result.success) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = `
+                    <h2>${t('success_title')}</h2>
+                    <p>${result.message || t('success_msg')}</p>
+                `;
+
+                // 触觉反馈
+                if (tg.HapticFeedback) {
+                    tg.HapticFeedback.notificationOccurred('success');
+                }
+
+                // 3秒后关闭 Web App
+                setTimeout(() => tg.close(), 3000);
+            } else {
+                resultDiv.className = 'result fail';
+                resultDiv.innerHTML = `
+                    <h2>${t('fail_title')}</h2>
+                    <p>${result.message || t('fail_msg')}</p>
+                    ${result.correct_count !== undefined ? `
+                        <div class="score">${t('score')}: ${result.correct_count} / ${result.total_count}</div>
+                    ` : ''}
+                `;
+
+                // 触觉反馈
+                if (tg.HapticFeedback) {
+                    tg.HapticFeedback.notificationOccurred('error');
+                }
+            }
+        }
+
+        // 显示错误
+        function showError(message) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('questions-container').style.display = 'none';
+            const errorDiv = document.getElementById('error');
+            errorDiv.style.display = 'block';
+            errorDiv.innerHTML = `<p>${message}</p>`;
+        }
+
+        // 启动
+        loadQuestions();
+    </script>
+</body>
+</html>
